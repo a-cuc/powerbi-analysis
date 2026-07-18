@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e 
+
+# Define paths relative to the script's location, not a personal folder
+DATA_DIR="$(dirname "$0")/../data"
+ZIP_FILE="$DATA_DIR/global-e-commerce-sales-and-customer-data.zip"
+
+# Ensure the target directory exists
+mkdir -p "$DATA_DIR"
+
+# Download the dataset
+curl -L -o "$ZIP_FILE" \
+  https://www.kaggle.com/api/v1/datasets/download/muhammadaammartufail/global-e-commerce-sales-and-customer-data
+
+# Unzip into the data directory
+unzip -o "$ZIP_FILE" -d "$DATA_DIR"
+
+# Optional: remove the zip after extracting
+rm "$ZIP_FILE"
